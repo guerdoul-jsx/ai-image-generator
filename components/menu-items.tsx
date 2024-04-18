@@ -16,7 +16,7 @@ export const menuItems = [
     href: "/gemeni",
   },
   {
-    name: "Copilote",
-    href: "/copilote",
+    name: "Copilot",
+    href: "/copilot",
   },
 ];
