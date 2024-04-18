@@ -6,6 +6,7 @@ import NextThemeProvider from "@/providers/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 import { NextUiProvider } from "@/providers/next-ui";
+import { Header } from "@/components/header";
 
 export const metadata: Metadata = {
   title: "Ai Image Generator",
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <NextUiProvider>
           <NextThemeProvider attribute="class" defaultTheme="dark">
+            <Header />
             {children}
           </NextThemeProvider>
         </NextUiProvider>

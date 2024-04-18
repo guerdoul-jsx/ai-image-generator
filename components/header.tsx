@@ -1,20 +1,40 @@
-import { MainNav } from "./main-nav";
-import ThemeToggle from "./theme-toggle";
-import { redirect } from "next/navigation";
-// import ProfileMenu from "./profile-menu";
+"use client";
 
-export async function Header() {
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  Link,
+  Button,
+} from "@nextui-org/react";
+import { menuItems } from "./menu-items";
+import ThemeToggle from "./theme-toggle";
+
+export function Header() {
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background">
-      <div className="container flex items-center h-16 space-x-4 sm:justify-between sm:space-x-0">
-        <MainNav />
-        <div className="flex item-center justify-end flex-1 space-x-4">
-          <nav className="flex items-center space-x-1">
-            <ThemeToggle />
-            {/* <ProfileMenu data={JSON.stringify(user)} /> */}
-          </nav>
-        </div>
-      </div>
-    </header>
+    <Navbar>
+      <NavbarBrand>
+        <p className="font-bold text-inherit text-xl">Ai Image Generator</p>
+      </NavbarBrand>
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        {menuItems.map((item, index) => (
+          <NavbarItem>
+            <Link
+              color="foreground"
+              className={item.icon ? "flex gap-x-2" : ""}
+              href={item.href}
+              key={`${item.href}-${index}`}
+            >
+              {item.icon}
+              {item.name}
+            </Link>
+          </NavbarItem>
+        ))}
+      </NavbarContent>
+      <NavbarContent justify="end">
+        <ThemeToggle />
+      </NavbarContent>
+    </Navbar>
   );
 }
