@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import Replicate from "replicate";
+import Replicate , { Model } from "replicate";
 
 export async function POST(req: Request, res: Response) {
   try {
