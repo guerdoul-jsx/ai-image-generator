@@ -7,16 +7,16 @@ export const menuItems = [
     href: "/",
     icon: <IoHome size={24} />,
   },
-  {
-    name: "Replicate",
-    href: "/replicate",
-  },
-  {
-    name: "Gemeni",
-    href: "/gemeni",
-  },
-  {
-    name: "Copilot",
-    href: "/copilot",
-  },
+  // {
+  //   name: "Replicate",
+  //   href: "/replicate",
+  // },
+  // {
+  //   name: "Gemeni",
+  //   href: "/gemeni",
+  // },
+  // {
+  //   name: "Copilot",
+  //   href: "/copilot",
+  // },
 ];

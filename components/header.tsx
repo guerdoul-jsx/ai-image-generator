@@ -10,6 +10,12 @@ import {
 import { menuItems } from "./menu-items";
 import ThemeToggle from "./theme-toggle";
 
+import dynamic from "next/dynamic";
+
+const Chunk = dynamic(() => import("@/components/chunk"), {
+  ssr: false,
+});
+
 export function Header() {
   return (
     <Navbar>
@@ -33,6 +39,7 @@ export function Header() {
         ))}
       </NavbarContent>
       <NavbarContent justify="end">
+        <Chunk />
         <ThemeToggle />
       </NavbarContent>
     </Navbar>
