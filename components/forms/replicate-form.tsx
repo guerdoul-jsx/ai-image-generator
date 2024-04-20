@@ -13,7 +13,7 @@ import {
 import React, { FormEvent, useEffect } from "react";
 import toast from "react-hot-toast";
 
-import { type Collection, type Model } from "replicate";
+import Replicate, { type Collection, type Model } from "replicate";
 import { FiEye } from "react-icons/fi";
 
 import { v4 as uuidV4 } from "uuid";
@@ -56,13 +56,8 @@ export function ReplicateForm() {
       event.preventDefault();
       setLoading(true);
 
-      console.log("data", {
-        prompt,
-        imageSize,
-        model,
-      });
+      if (!model) return toast.error("Model Required");
 
-      console.log("collections", collections);
       const response = await fetch("/api/replicate", {
         method: "POST",
         headers: {
@@ -76,8 +71,6 @@ export function ReplicateForm() {
         }),
       });
       const data = await response.json();
-      console.log({ data });
-
       const replicateData = data.message;
 
       const isDataArray = Array.isArray(replicateData);
@@ -103,10 +96,8 @@ export function ReplicateForm() {
             },
             ...prev,
           ]);
-      console.log(data);
       toast.success("Done");
     } catch (error) {
-      console.log("error", error);
       toast.error("Something went wrong");
     } finally {
       setLoading(false);
@@ -114,7 +105,7 @@ export function ReplicateForm() {
   }
   function handleSelectModel(currentKey: string) {
     const currentModel = collections.find(
-      (item, index) => item.latest_version?.id === currentKey
+      (item, _) => item.latest_version?.id === currentKey
     );
     currentModel ? setModel(currentModel) : setModel(null);
   }
